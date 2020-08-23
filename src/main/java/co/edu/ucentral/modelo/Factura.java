@@ -5,41 +5,82 @@
  */
 package co.edu.ucentral.modelo;
 
-import java.awt.List;
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
-public class Factura {
+/**
+ *
+ * @author Adolfo
+ */
+@Entity
+@Table(name = "Factura")
+@NamedQueries({
+    @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
+    @NamedQuery(name = "Factura.findByIdFactura", query = "SELECT f FROM Factura f WHERE f.idFactura = :idFactura"),
+    @NamedQuery(name = "Factura.findByFechaFactura", query = "SELECT f FROM Factura f WHERE f.fechaFactura = :fechaFactura"),
+    @NamedQuery(name = "Factura.findByTotal", query = "SELECT f FROM Factura f WHERE f.total = :total")})
+public class Factura implements Serializable {
 
-    private int idFactura;
-    private Cliente cliente;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idFactura")
+    private Integer idFactura;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fechaFactura")
+    @Temporal(TemporalType.DATE)
     private Date fechaFactura;
-    private double total;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "total")
+    private BigDecimal total;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura", fetch = FetchType.LAZY)
+    private List<DetalleFactura> detalleFacturaList;
+    @JoinColumn(name = "IdCliente", referencedColumnName = "IdCliente")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Cliente idCliente;
 
     public Factura() {
     }
 
-    public Factura(int idFactura, Cliente cliente, Date fechaFactura, double total) {
+    public Factura(Integer idFactura) {
         this.idFactura = idFactura;
-        this.cliente = cliente;
+    }
+
+    public Factura(Integer idFactura, Date fechaFactura, BigDecimal total) {
+        this.idFactura = idFactura;
         this.fechaFactura = fechaFactura;
         this.total = total;
     }
 
-    public int getIdFactura() {
+    public Integer getIdFactura() {
         return idFactura;
     }
 
-    public void setIdFactura(int idFactura) {
+    public void setIdFactura(Integer idFactura) {
         this.idFactura = idFactura;
-    }
-
-    public Cliente getIdCliente() {
-        return this.cliente;
-    }
-
-    public void setIdCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public Date getFechaFactura() {
@@ -50,12 +91,53 @@ public class Factura {
         this.fechaFactura = fechaFactura;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
+    public List<DetalleFactura> getDetalleFacturaList() {
+        return detalleFacturaList;
+    }
+
+    public void setDetalleFacturaList(List<DetalleFactura> detalleFacturaList) {
+        this.detalleFacturaList = detalleFacturaList;
+    }
+
+    public Cliente getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Cliente idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idFactura != null ? idFactura.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Factura)) {
+            return false;
+        }
+        Factura other = (Factura) object;
+        if ((this.idFactura == null && other.idFactura != null) || (this.idFactura != null && !this.idFactura.equals(other.idFactura))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "co.edu.ucentral.modelo.Factura[ idFactura=" + idFactura + " ]";
+    }
+    
 }
