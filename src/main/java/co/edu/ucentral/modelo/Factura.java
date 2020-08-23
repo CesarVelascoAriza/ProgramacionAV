@@ -9,10 +9,6 @@ import java.awt.List;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author fredy Gamer
- */
 public class Factura {
 
     private int idFactura;

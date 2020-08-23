@@ -7,10 +7,6 @@ package co.edu.ucentral.modelo;
 
 import java.util.Date;
 
-/**
- *
- * @author fredy Gamer
- */
 public class Cliente extends Usuario {
 
     private int IdCliente;

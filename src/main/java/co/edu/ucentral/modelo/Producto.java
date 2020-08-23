@@ -5,10 +5,6 @@
  */
 package co.edu.ucentral.modelo;
 
-/**
- *
- * @author fredy Gamer
- */
 public class Producto {
     private int idProducto; 
     private String nombreProducto;

@@ -5,10 +5,6 @@
  */
 package co.edu.ucentral.modelo;
 
-/**
- *
- * @author fredy Gamer
- */
 public class DetalleFactura {
 
     private int idDetalle;
