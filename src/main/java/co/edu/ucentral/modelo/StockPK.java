@@ -18,7 +18,11 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class StockPK implements Serializable {
 
-    @Basic(optional = false)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Basic(optional = false)
     @Column(name = "idStock")
     private int idStock;
     @Basic(optional = false)
