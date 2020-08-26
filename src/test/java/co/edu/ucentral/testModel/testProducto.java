@@ -14,6 +14,8 @@ public class testProducto {
 	public void testProductos() {
 		List<Producto> listadoProducto= ProductosDAO.instancia().litadoProductos();
 		listadoProducto.size();
+		System.out.println(listadoProducto.get(0).getNombreProducto());
+		System.out.println(listadoProducto.get(0).getIdProducto());
 		Assert.assertNotNull(listadoProducto);
 	}
 	@Test
