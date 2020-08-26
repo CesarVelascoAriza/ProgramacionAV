@@ -342,17 +342,18 @@
         <!-- Links -->
 
         <!-- Search form -->
-        <form class="form-inline">
+        <form method="get" action="UsuarioCtr" class="form-inline">
             <div class="md-form my-0">
                 <button type="button" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
                     <span class="fa fa-shopping-cart"></span>
                     <span class="badge badge-light">0</span>
                 </button>
-                <button type="button" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
+                <button type="submit" name="accion" value="registro" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
                     REGISTRARME 
                     <span class="fa fa-lock"></span>
                 </button>
-                <button type="button" class="form-control form-control-sm pl-2 pr-2 bordered">
+                
+                <button type="submit"  type="submit" name="accion" value="sesion" class="form-control form-control-sm pl-2 pr-2 bordered">
                     INICIAR SESIÓN
                     <span class="fa fa-user"></span>
                 </button>
