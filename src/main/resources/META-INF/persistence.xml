@@ -8,9 +8,7 @@
     	<class>co.edu.ucentral.modelo.Factura</class>
     	<class>co.edu.ucentral.modelo.Producto</class>
     	<class>co.edu.ucentral.modelo.Rol</class>
-    	<class>co.edu.ucentral.modelo.Stock</class>
     	<class>co.edu.ucentral.modelo.Usuario</class>
-    	<class>co.edu.ucentral.modelo.StockPK</class>
     	<properties>
     		<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
     		<property name="javax.persistence.jdbc.url" value="jdbc:mysql://servidoraws.chhahj08jtdq.us-east-2.rds.amazonaws.com:3306/BDEntel"/>

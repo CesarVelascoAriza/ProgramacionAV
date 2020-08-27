@@ -20,7 +20,7 @@ public class testProducto {
 	}
 	@Test
 	public void insertarProducto() {
-		Producto p= new Producto(1, 1, "producto de prueba", "/imagen/image", 25000);
+		Producto p= new Producto(1, "Chaqueta Hombre La Martina", "Talla unica color en negro ", "/imagen/image", 25000);
 		String mensaje = ProductosDAO.instancia().insertarProducto(p);
 		System.out.println(mensaje);
 		Assert.assertNotNull(mensaje);

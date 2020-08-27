@@ -31,10 +31,11 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
     @NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto"),
-    @NamedQuery(name = "Producto.findByNombreProducto", query = "SELECT p FROM Producto p WHERE p.nombreProducto = :nombreProducto"),
     @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
     @NamedQuery(name = "Producto.findByRutaImagen", query = "SELECT p FROM Producto p WHERE p.rutaImagen = :rutaImagen"),
-    @NamedQuery(name = "Producto.findByPrecioUnidad", query = "SELECT p FROM Producto p WHERE p.precioUnidad = :precioUnidad")})
+    @NamedQuery(name = "Producto.findByPrecioUnidad", query = "SELECT p FROM Producto p WHERE p.precioUnidad = :precioUnidad"),
+    @NamedQuery(name = "Producto.findByNombreProducto", query = "SELECT p FROM Producto p WHERE p.nombreProducto = :nombreProducto"),
+    @NamedQuery(name = "Producto.findByCatidadProducto", query = "SELECT p FROM Producto p WHERE p.catidadProducto = :catidadProducto")})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,10 +44,6 @@ public class Producto implements Serializable {
     @Basic(optional = false)
     @Column(name = "idProducto")
     private Integer idProducto;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "nombreProducto")
-    private int nombreProducto;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 500)
@@ -61,10 +58,13 @@ public class Producto implements Serializable {
     @NotNull
     @Column(name = "precioUnidad")
     private int precioUnidad;
+    @Size(max = 50)
+    @Column(name = "nombreProducto")
+    private String nombreProducto;
+    @Column(name = "catidadProducto")
+    private Integer catidadProducto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto", fetch = FetchType.LAZY)
     private List<DetalleFactura> detalleFacturaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto", fetch = FetchType.LAZY)
-    private List<Stock> stockList;
 
     public Producto() {
     }
@@ -73,7 +73,7 @@ public class Producto implements Serializable {
         this.idProducto = idProducto;
     }
 
-    public Producto(Integer idProducto, int nombreProducto, String descripcion, String rutaImagen, int precioUnidad) {
+    public Producto(Integer idProducto,String nombreProducto, String descripcion, String rutaImagen, int precioUnidad) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
@@ -87,14 +87,6 @@ public class Producto implements Serializable {
 
     public void setIdProducto(Integer idProducto) {
         this.idProducto = idProducto;
-    }
-
-    public int getNombreProducto() {
-        return nombreProducto;
-    }
-
-    public void setNombreProducto(int nombreProducto) {
-        this.nombreProducto = nombreProducto;
     }
 
     public String getDescripcion() {
@@ -121,20 +113,28 @@ public class Producto implements Serializable {
         this.precioUnidad = precioUnidad;
     }
 
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public Integer getCatidadProducto() {
+        return catidadProducto;
+    }
+
+    public void setCatidadProducto(Integer catidadProducto) {
+        this.catidadProducto = catidadProducto;
+    }
+
     public List<DetalleFactura> getDetalleFacturaList() {
         return detalleFacturaList;
     }
 
     public void setDetalleFacturaList(List<DetalleFactura> detalleFacturaList) {
         this.detalleFacturaList = detalleFacturaList;
-    }
-
-    public List<Stock> getStockList() {
-        return stockList;
-    }
-
-    public void setStockList(List<Stock> stockList) {
-        this.stockList = stockList;
     }
 
     @Override

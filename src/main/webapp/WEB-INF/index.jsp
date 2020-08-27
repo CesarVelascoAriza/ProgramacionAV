@@ -148,6 +148,7 @@ to {
 					<div class="card-body">
 						<h5 class="card-title"> ${productos.nombreProducto} </h5>
 						<p class="card-text">${productos.descripcion} </p>
+						<h5 class="card-title">Precio  ${productos.precioUnidad} </h5>
 						<a href="#" class="btn btn-primary">Anadir al carrito</a>
 					</div>
 				</div>
