@@ -29,9 +29,9 @@ public class UsuarioCtr extends HttpServlet {
 		// TODO Auto-generated method stub
 		String accion = request.getParameter("accion");
 		if(accion.equals("registro")) {
-			request.getRequestDispatcher("WEB-INF/usuario/regisroUsuario.jsp");
+			request.getRequestDispatcher("WEB-INF/usuario/registroUsuario.jsp").forward(request, response);
 		}else{
-			request.getRequestDispatcher("WEB-INF/usuario/iniciarSesion.jsp");
+			request.getRequestDispatcher("WEB-INF/usuario/iniciarSesion.jsp").forward(request, response);
 		}
 		
 	}
