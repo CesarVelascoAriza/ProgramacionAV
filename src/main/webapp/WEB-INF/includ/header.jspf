@@ -241,7 +241,7 @@
             <!-- Lifestyle -->
             <li class="nav-item dropdown mega-dropdown">
                 <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink4" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">EN PROMOCI?N</a>
+                   aria-haspopup="true" aria-expanded="false">EN PROMOCIÓN</a>
                 <div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-5 px-3"
                      aria-labelledby="navbarDropdownMenuLink4">
                     <div class="row">
