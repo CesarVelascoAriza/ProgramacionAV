@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
-
+         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +11,8 @@
               crossorigin="anonymous">
         <meta name="viewport"
               content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Iniciar Sesion</title>
+
+        <title>Administar producto</title>
         <base target="_parent">
         <link rel="stylesheet"
               href="https://use.fontawesome.com/releases/v5.11.0/css/all.css">
@@ -56,24 +57,11 @@
     </head>
     <body>
         <%@ include file="../includ/head.jspf"%>
+        <br>
         <div class="container">
-            <br>
-            <form action="UsuarioCtr" method="post">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email"  name="email" required="required" id="email" class="form-control" >
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Contraseña</label>
-                    <input type="password" name="password" required="required"  id="password" class="form-control" id="exampleInputPassword1">
-                </div>
-				<div class="form-group">
-					<button type="submit"  name="accion" value="valideUsuario"  class="btn btn-primary">Iniciar sesion</button>
-				</div>
-            </form>
-            <br>
-        </div>
 
+        </div>
+        <br>
         <%@ include file="../includ/footer.jspf" %>
     </body>
 </html>

@@ -64,39 +64,43 @@
                 </div>
             </div>
             <br>
-            <form>
+            <form action="UsuarioCtr" method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">Tipo de Documento</label>
-                        <select class="form-control">
-                            <option>Default select</option>
+                        <select name="tipoDocumento" class="form-control">
+                            <option>seleccione</option>
+                            <option value="1">Cedula de Ciudadania</option>
+                            <option value="2" >Cedula Extranjeria</option>
+                            <option value="3">Nit</option>
+                            <option value="4">Pasaporte</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Documento</label>
-                        <input type="password" class="form-control" id="inputPassword4">
+                        <input type="number" class="form-control" maxlength="11" id="documento" name="documento">
                     </div>
 
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">Nombre</label>
-                        <input type="password" class="form-control" id="inputPassword4">
+                        <input type="text" class="form-control" id="nombre" name="nombre">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Apellido</label>
-                        <input type="password" class="form-control" id="inputPassword4">
+                        <input type="text" class="form-control" id="apellido" name="apellido">
                     </div>
 
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputCity">Fecha nacimiento</label>
-                        <input type="date" class="form-control" id="inputCity">
+                        <input type="date" class="form-control" id="fechaNaciento" name="fechaNaciento">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputState">Direccion</label>
-                        <input type="text" class="form-control" id="inputCity">
+                        <input type="text" class="form-control" id="direccion" name="direccion">
                     </div>
                     
                 </div>
@@ -104,15 +108,15 @@
                      <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+                        <input type="email" class="form-control" id="email" name="email" >
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputPassword4">Password</label>
-                        <input type="password" class="form-control" id="inputPassword4">
+                        <label for="inputPassword4">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" >
                     </div>
                 </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary" name="accion" value="adicionar" >Guardar</button>
             </form>
             <br>
         </div>

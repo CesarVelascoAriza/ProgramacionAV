@@ -18,7 +18,7 @@ public class UsuarioDAO {
 
 	}
 
-	private static UsuarioDAO instancia() {
+	public static UsuarioDAO instancia() {
 		if (usuarioDAO == null)
 			usuarioDAO = new UsuarioDAO();
 		return usuarioDAO;
@@ -49,8 +49,8 @@ public class UsuarioDAO {
 		EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
 		em = factoriaSesion.createEntityManager();
 		Usuario usuario = new Usuario();
-		Query query = em.createNamedQuery("Producto.findByIdProducto", Usuario.class);
-		query.setParameter("nombreUsuario", nombre);
+		Query query = em.createNamedQuery("Usuario.findBylogin", Usuario.class);
+		query.setParameter("email", nombre);
 		query.setParameter("contrasenia", pass);
 		try {
 			usuario =(Usuario) query.getSingleResult();

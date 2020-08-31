@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,7 +31,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
-    @NamedQuery(name = "Usuario.findBylogin", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario and u.contrasenia = :contrasenia "),
+    @NamedQuery(name = "Usuario.findBylogin", query = "SELECT u FROM Usuario u WHERE u.email = :email and u.contrasenia = :contrasenia "),
     @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),
     @NamedQuery(name = "Usuario.findByContrasenia", query = "SELECT u FROM Usuario u WHERE u.contrasenia = :contrasenia")})
 public class Usuario implements Serializable {
@@ -46,7 +47,6 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "nombreUsuario")
     private String nombreUsuario;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -74,8 +74,16 @@ public class Usuario implements Serializable {
         this.email = email;
         this.contrasenia = contrasenia;
     }
+    
+    public Usuario(String nombreUsuario, String email, String contrasenia, Rol idRol) {
+		
+		this.nombreUsuario = nombreUsuario;
+		this.email = email;
+		this.contrasenia = contrasenia;
+		this.idRol = idRol;
+	}
 
-    public Integer getIdUsuario() {
+	public Integer getIdUsuario() {
         return idUsuario;
     }
 

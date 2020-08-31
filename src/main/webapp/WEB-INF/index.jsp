@@ -144,7 +144,7 @@ to {
 			<div class="row">
 				<c:forEach items="${listadoProducto}" var="productos">
 				<div class="card col-md-3 pt-3 m-3" style="width: 18rem;">
-					<img src="..." class="card-img-top" alt="...">
+					<img src="${productos.rutaImagen}" class="card-img-top" alt="100px">
 					<div class="card-body">
 						<h5 class="card-title"> ${productos.nombreProducto} </h5>
 						<p class="card-text">${productos.descripcion} </p>

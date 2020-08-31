@@ -8,6 +8,8 @@ package co.edu.ucentral.modelo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -50,6 +52,10 @@ public class Cliente implements Serializable {
     private Integer idCliente;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "tipoDocumento")
+    private String tipoDocumento;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "documentoCliente")
     private int documentoCliente;
     @Basic(optional = false)
@@ -87,8 +93,9 @@ public class Cliente implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Integer idCliente, int documentoCliente, String nombreCliente, String apellidoCliente, Date fechaNacimento, String direccionCliente, String emailCliente) {
+    public Cliente(Integer idCliente,String tipoDocumento, int documentoCliente, String nombreCliente, String apellidoCliente, Date fechaNacimento, String direccionCliente, String emailCliente) {
         this.idCliente = idCliente;
+        this.tipoDocumento = tipoDocumento;
         this.documentoCliente = documentoCliente;
         this.nombreCliente = nombreCliente;
         this.apellidoCliente = apellidoCliente;
@@ -97,15 +104,37 @@ public class Cliente implements Serializable {
         this.emailCliente = emailCliente;
     }
 
-    public Integer getIdCliente() {
+    
+    public Cliente(String tipoDocumento, int documentoCliente, String nombreCliente, String apellidoCliente,
+			Date fechaNacimento, String direccionCliente, String emailCliente) {
+    	this.idCliente = (int) UUID.randomUUID().node();
+		this.tipoDocumento = tipoDocumento;
+		this.documentoCliente = documentoCliente;
+		this.nombreCliente = nombreCliente;
+		this.apellidoCliente = apellidoCliente;
+		this.fechaNacimento = fechaNacimento;
+		this.direccionCliente = direccionCliente;
+		this.emailCliente = emailCliente;
+		
+	}
+
+	public Integer getIdCliente() {
         return idCliente;
     }
 
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
+    
+    public String getTipoDocumento() {
+		return tipoDocumento;
+	}
 
-    public int getDocumentoCliente() {
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public int getDocumentoCliente() {
         return documentoCliente;
     }
 
