@@ -344,12 +344,12 @@
             <c:if test="${validacion}">
 				<form method="post" action="UsuarioCtr" class="form-inline">
                     <div class="md-form my-0">
-                       <c:if test="${usuario.rol.idRol == 2 }">
+                     	<c:if test="rol eq cliente">
 	                        <button type="button" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
 	                            <span class="fa fa-shopping-cart"></span>
 	                            <span class="badge badge-light">0</span>
 	                        </button>
-                        </c:if>
+                     	</c:if>
                         <button type="submit" name="accion" value="perfil" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
                             <c:out value="${usuario.nombreUsuario}" />
                             <span class="fa fa-lock"></span>

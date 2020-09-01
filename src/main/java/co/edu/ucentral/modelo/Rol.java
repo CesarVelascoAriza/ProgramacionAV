@@ -45,7 +45,7 @@ public class Rol implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRol", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol", fetch = FetchType.LAZY)
     private List<Usuario> usuarioList;
 
     public Rol() {
@@ -60,7 +60,7 @@ public class Rol implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Integer getIdRol() {
+    public Integer getRol() {
         return idRol;
     }
 

@@ -49,6 +49,10 @@ public class UsuarioCtr extends HttpServlet {
 			} else if (accion.equals("sesion")) {
 				request.getRequestDispatcher("WEB-INF/usuario/iniciarSesion.jsp").forward(request, response);
 			}
+		}if(request.getAttribute("accion") != null) {
+			if(request.getAttribute("accion").equals("sesion")) {
+				request.getRequestDispatcher("WEB-INF/usuario/iniciarSesion.jsp").forward(request, response);
+			}
 		}
 		response.sendRedirect("ProductosCtrl");
 
@@ -64,29 +68,43 @@ public class UsuarioCtr extends HttpServlet {
 			crearUsuario(request, response);
 		} else if (request.getParameter("accion").equals("valideUsuario")) {
 			validarUsuario(request, response);
+		}else if(request.getParameter("accion").equals("cerrarSesion")) {
+			HttpSession sesion = request.getSession();
+			sesion.invalidate();
+			
 		}
-
+		
 		response.sendRedirect("UsuarioCtr");
 
 	}
 
-	private void validarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void validarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		Usuario usuario = UsuarioDAO.instancia().buscarUsuario(email, password);
-		if (usuario != null) {
-			validacion = true;
-			HttpSession sesion = request.getSession();
-			if (sesion != null) {
-				sesion.setAttribute("validacion", validacion);
-				sesion.setAttribute("usuario", usuario);
-				if(usuario.getIdRol().getIdRol()== 2)
-					response.sendRedirect("UsuarioCtr");
-				if(usuario.getIdRol().getIdRol() == 1){
-					response.sendRedirect("AdministradorCtrl");
+		try {
+			Usuario usuario = UsuarioDAO.instancia().buscarUsuario(email, password);
+			if (usuario != null) {
+				validacion = true;
+				HttpSession sesion = request.getSession();
+				if (sesion != null) {
+					sesion.setAttribute("validacion", validacion);
+					sesion.setAttribute("usuario", usuario);
+					if(usuario.getRol().getRol()== 2)
+						sesion.setAttribute("rol", "cliente");
+						
+					if(usuario.getRol().getRol() == 1){
+						sesion.setAttribute("rol", "administrador");
+						response.sendRedirect("AdministradorCtrl");
+					}
 				}
+			}else {
+				
 			}
+		} catch (Exception e) {
+			request.setAttribute("mensaje", "Usuario y contraseña invalidos");
+			request.getRequestDispatcher("WEB-INF/usuario/iniciarSesion.jsp").forward(request, response);
 		}
+		
 
 	}
 

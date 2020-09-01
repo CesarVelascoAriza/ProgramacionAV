@@ -66,39 +66,39 @@
                     <p class="lead">Aqui puede gestionar los productos </p>
                 </div>
                 <form action="AdministradorCtrl" method="get">
-                    <input class="btn btn-success"  type="submit" name="accion " value="nuevo">
+                    <input class="btn btn-success"  type="submit" name="accion" value="nuevo">
                 </form>
-                <table>
-                    <thead>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
                         <tr>
-                            <th>id</th>
-                            <th>nombre</th>
-                            <th>descripcion</th>
-                            <th>imagen</th>
-                            <th>precioUnidad</th>
-                            <th>cantidad </th>
-                            <th>opcion Editar</th>
-                            <th>opcion Eliminar</th>
+                            <th scope="col">id</th>
+                            <th scope="col">nombre</th>
+                            <th scope="col">descripcion</th>
+                            <th scope="col"> imagen</th>
+                            <th scope="col" >precioUnidad</th>
+                            <th scope="col">cantidad </th>
+                            <th scope="col">opcion Editar</th>
+                            <th scope="col">opcion Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${listadoProductos}" var="producto">
+                        <c:forEach items="${listadoProducto}" var="producto">
                             <tr>
-                                <td>${producto.idProducto }</td>
+                                <td scope="row">${producto.idProducto }</td>
                                 <td>${producto.nombreProducto }</td>
                                 <td>${producto.descripcion }</td>
                                 <td>${producto.rutaImagen }</td>
                                 <td>${producto.precioUnidad }</td>
                                 <td>${producto.catidadProducto }</td>
                                 <td>
-                                    <form action="EmpleoCtrl" method="get">
-                                        <input type="hidden" name="idEmpleo" value="${empleo.id}">
+                                    <form action="AdministradorCtrl" method="get">
+                                        <input type="hidden" name="idProducto" value="${producto.idProducto}">
                                         <input type="submit" name="accion" id="accion" value="editar" class="btn btn-success" >
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="EmpleoCtrl" method="get">
-                                        <input type="hidden" name="idEmpleo" value="${empleo.id}">
+                                    <form action="AdministradorCtrl" method="get">
+                                        <input type="hidden" name="idProducto" value="${producto.idProducto}">
                                         <input type="submit" name="accion" id="accion" value="eliminar" class="btn btn-danger" >
                                     </form>
                                 </td>

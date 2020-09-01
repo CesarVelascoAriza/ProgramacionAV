@@ -59,7 +59,7 @@ public class Usuario implements Serializable {
     private String contrasenia;
     @JoinColumn(name = "idRol", referencedColumnName = "idRol")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Rol idRol;
+    private Rol rol;
 
     public Usuario() {
     }
@@ -75,12 +75,12 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
     }
     
-    public Usuario(String nombreUsuario, String email, String contrasenia, Rol idRol) {
+    public Usuario(String nombreUsuario, String email, String contrasenia, Rol rol) {
 		
 		this.nombreUsuario = nombreUsuario;
 		this.email = email;
 		this.contrasenia = contrasenia;
-		this.idRol = idRol;
+		this.rol = rol;
 	}
 
 	public Integer getIdUsuario() {
@@ -115,12 +115,12 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
     }
 
-    public Rol getIdRol() {
-        return idRol;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setIdRol(Rol idRol) {
-        this.idRol = idRol;
+    public void setRol(Rol idRol) {
+        this.rol = idRol;
     }
 
     @Override

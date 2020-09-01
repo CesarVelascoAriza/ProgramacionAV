@@ -18,11 +18,5 @@ public class testProducto {
 		System.out.println(listadoProducto.get(0).getIdProducto());
 		Assert.assertNotNull(listadoProducto);
 	}
-	@Test
-	public void insertarProducto() {
-		Producto p= new Producto(1, "Chaqueta Hombre La Martina", "Talla unica color en negro ", "/imagen/image", 25000);
-		String mensaje = ProductosDAO.instancia().insertarProducto(p);
-		System.out.println(mensaje);
-		Assert.assertNotNull(mensaje);
-	}
+	
 }
