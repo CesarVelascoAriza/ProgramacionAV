@@ -8,10 +8,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-    <%@include file="./includ/head.jspf"%>
+    <%@include file="../includ/head.jspf"%>
     <body>
 
-        <%@include file="./includ/header.jspf"%>
+        <%@include file="../includ/header.jspf"%>
 
         <div id="carousel-example-2"
              class="carousel slide carousel-fade z-depth-1-half container mt-4 mb-4 pt-2 pb-2"
@@ -102,6 +102,6 @@
         </div>
 
 
-        <%@include file="./includ/footer.jspf"%>
+        <%@include file="../includ/footer.jspf"%>
     </body>
 </html>
