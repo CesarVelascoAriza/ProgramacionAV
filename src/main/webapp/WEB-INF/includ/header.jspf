@@ -1,54 +1,25 @@
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-          crossorigin="anonymous">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>::: Tienda Entel ::: - Bienvenido</title>
+<%-- any content can be specified here e.g.: --%>
 
-    <base target="_parent">
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.11.0/css/all.css">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
-    <link rel="stylesheet"
-          href="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.1/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.1/css/mdb.min.css">
-    <link rel="stylesheet"
-          href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-addons-4.19.1.min.css">
-    <link rel="stylesheet" type="text/css"
-          href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/mdb-plugins-gathered.min.css">
-    <style></style>
-    <style type="text/css">
-        /* Chart.js */
-        @-webkit-keyframes chartjs-render-animation {
-            from {opacity: 0.99
-            }
 
-            to {
-                opacity: 1
-            }
+<nav class="navbar navbar-expand-lg navbar-dark special-color-dark">
 
-        }
-        @keyframes chartjs-render-animation {
-            from {opacity: 0.99
-            }
+    <!-- Navbar brand -->
+    <a class="navbar-brand text-uppercase" href="#">
+        <span class="fa fa-tags"></span>
+        Entel
+    </a>
 
-            to {
-                opacity: 1
-            }
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
+            aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        }
-        .chartjs-render-monitor {
-            -webkit-animation: chartjs-render-animation 0.001s;
-            animation: chartjs-render-animation 0.001s;
-        }
-    </style>
-    <link rel="icon" type="image/png"
-          href="https://icons.iconarchive.com/icons/aha-soft/business-toolbar/48/payment-icon.png" />
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
 
             <!-- Features -->
             <li class="nav-item dropdown mega-dropdown active">
@@ -369,49 +340,25 @@
 
         </ul>
         <!-- Links -->
-       
-            <c:if test="${validacion}">
-				<form method="post" action="UsuarioCtr" class="form-inline">
-                    <div class="md-form my-0">
-                     	<c:if test="rol eq cliente">
-	                        <button type="button" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
-	                            <span class="fa fa-shopping-cart"></span>
-	                            <span class="badge badge-light">0</span>
-	                        </button>
-                     	</c:if>
-                        <button type="submit" name="accion" value="perfil" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
-                            <c:out value="${usuario.nombreUsuario}" />
-                            <span class="fa fa-lock"></span>
-                        </button>
 
-                        <button type="submit"  type="submit" name="accion" value="cerrarSesion" class="form-control form-control-sm pl-2 pr-2 bordered">
-                            Cerrar sesion 
-                            <span class="fa fa-user"></span>
-                        </button>
-                    </div>
-                </form>
-            </c:if>
-            <c:if test="${!validacion}">
-                <!-- Search form -->
-                <form method="get" action="UsuarioCtr" class="form-inline">
-                    <div class="md-form my-0">
-                        <button type="button" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
-                            <span class="fa fa-shopping-cart"></span>
-                            <span class="badge badge-light">0</span>
-                        </button>
-                        <button type="submit" name="accion" value="registro" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
-                            REGISTRARME 
-                            <span class="fa fa-lock"></span>
-                        </button>
-
-                        <button type="submit"  type="submit" name="accion" value="sesion" class="form-control form-control-sm pl-2 pr-2 bordered">
-                            INICIAR SESIÓN
-                            <span class="fa fa-user"></span>
-                        </button>
-                    </div>
-                </form>
-            </c:if>
-
+        <!-- Search form -->
+        <form method="get" action="UsuarioCtr" class="form-inline">
+            <div class="md-form my-0">
+                <button type="button" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
+                    <span class="fa fa-shopping-cart"></span>
+                    <span class="badge badge-light">0</span>
+                </button>
+                <button type="submit" name="accion" value="registro" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
+                    REGISTRARME 
+                    <span class="fa fa-lock"></span>
+                </button>
+                
+                <button type="submit"  type="submit" name="accion" value="sesion" class="form-control form-control-sm pl-2 pr-2 bordered">
+                    INICIAR SESI?N
+                    <span class="fa fa-user"></span>
+                </button>
+            </div>
+        </form>
 
     </div>
     <!-- Collapsible content -->

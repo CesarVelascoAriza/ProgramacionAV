@@ -11,7 +11,8 @@ public class ConexionJPA {
 		try {
 			return Persistence.createEntityManagerFactory("tiendaweb");
 		} catch (Throwable e) {
-			throw new RuntimeException("Error al crear la factoria JPA");
+                        System.out.print(e.getMessage());
+			throw new RuntimeException("Error al crear la factoria JPA." + e.getMessage());
 		}
 	}
 

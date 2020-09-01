@@ -23,7 +23,7 @@ import co.edu.ucentral.modelo.Producto;
  *
  * @author Adolfo
  */
-@WebServlet(name = "ProductosCtrl", urlPatterns = {"/"})
+@WebServlet(name = "ProductosCtrl", urlPatterns = {"/ProductosCtrl"})
 public class ProductosCtrl extends HttpServlet {
 
    
@@ -35,9 +35,6 @@ public class ProductosCtrl extends HttpServlet {
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	List<Producto> listadoProducto= ProductosDAO.instancia().litadoProductos();
-    	request.setAttribute("listadoProducto", listadoProducto);
-    	request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
     	
     }
 
