@@ -6,6 +6,7 @@
 package co.edu.ucentral.modelo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -188,6 +189,11 @@ public class Cliente implements Serializable {
 
     public void setFacturaList(List<Factura> facturaList) {
         this.facturaList = facturaList;
+    }
+    
+    public String getFechaString(){
+        SimpleDateFormat objFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return objFormat.format(fechaNacimento);
     }
 
     @Override

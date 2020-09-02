@@ -38,7 +38,7 @@ public class InicioCtrl extends HttpServlet {
             throws ServletException, IOException {
         List<Producto> listadoProducto= ProductosDAO.instancia().litadoProductos();
     	request.setAttribute("listadoProducto", listadoProducto);
-    	request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+    	request.getRequestDispatcher("WEB-INF/Inicio/index.jsp").forward(request, response);
     }
 
     /**

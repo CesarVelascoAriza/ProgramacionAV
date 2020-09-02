@@ -34,7 +34,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
     @NamedQuery(name = "Producto.findByRutaImagen", query = "SELECT p FROM Producto p WHERE p.rutaImagen = :rutaImagen"),
     @NamedQuery(name = "Producto.findByPrecioUnidad", query = "SELECT p FROM Producto p WHERE p.precioUnidad = :precioUnidad"),
-    @NamedQuery(name = "Producto.findByNombreProducto", query = "SELECT p FROM Producto p WHERE p.nombreProducto = :nombreProducto"),
+    @NamedQuery(name = "Producto.findByNombreProducto", query = "SELECT p FROM Producto p WHERE p.nombreProducto like :nombreProducto"),
     @NamedQuery(name = "Producto.findByCatidadProducto", query = "SELECT p FROM Producto p WHERE p.catidadProducto = :catidadProducto")})
 public class Producto implements Serializable {
 
