@@ -13,7 +13,7 @@
 
         <%@include file="../includ/header.jspf"%>
 
-    
+
         <%--Para el body  --%>
         <div id="carousel-example-2"
              class="carousel slide carousel-fade z-depth-1-half container mt-4 mb-4 pt-2 pb-2"
@@ -31,7 +31,11 @@
                             <h5 class="card-title"> ${productos.nombreProducto} </h5>
                             <p class="card-text text-truncate" style="height-min: 50px">${productos.descripcion} </p>
                             <h5 class="card-title">Precio  ${productos.precioUnidad} </h5>
-                            <a href="#" class="btn btn-primary">Anadir al carrito</a>
+                            <form action="ProductosCtrl" method="POST">
+                                <input type="hidden" value="${productos.idProducto}" name="idProducto" >
+                                <input type="hidden" value="${productos.precioUnidad}" name="precioUnidad" >
+                                <input type="submit" class="btn btn-success btn-sm" name="accion" value="Agregar producto">
+                            </form>
                         </div>
                     </div>
                 </c:forEach>

@@ -23,30 +23,9 @@
           href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/mdb-plugins-gathered.min.css">
     <style></style>
     <style type="text/css">
-        /* Chart.js */
-        @-webkit-keyframes chartjs-render-animation {
-            from {opacity: 0.99
-            }
-
-            to {
-                opacity: 1
-            }
-
-        }
-        @keyframes chartjs-render-animation {
-            from {opacity: 0.99
-            }
-
-            to {
-                opacity: 1
-            }
-
-        }
-        .chartjs-render-monitor {
-            -webkit-animation: chartjs-render-animation 0.001s;
-            animation: chartjs-render-animation 0.001s;
-        }
+        
     </style>
+    <link rel="stylesheet" type="text/css" href="../css/site.css">
     <link rel="icon" type="image/png"
           href="https://icons.iconarchive.com/icons/aha-soft/business-toolbar/48/payment-icon.png" />
 

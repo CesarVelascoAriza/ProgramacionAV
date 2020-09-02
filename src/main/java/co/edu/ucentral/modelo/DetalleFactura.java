@@ -68,11 +68,12 @@ public class DetalleFactura implements Serializable {
         this.idDetalle = idDetalle;
     }
 
-    public DetalleFactura(Integer idDetalle, int cantidaProducto, BigDecimal precioCantidad, BigDecimal total) {
+    public DetalleFactura(Integer idDetalle, int cantidaProducto, BigDecimal precioCantidad, BigDecimal total, Producto IdProducto) {
         this.idDetalle = idDetalle;
         this.cantidaProducto = cantidaProducto;
         this.precioCantidad = precioCantidad;
         this.total = total;
+        this.idProducto = IdProducto;
     }
 
     public Integer getIdDetalle() {
