@@ -10,107 +10,123 @@ import javax.persistence.Query;
 
 import co.edu.ucentral.modelo.Producto;
 import co.edu.ucentral.servicio.ConexionJPA;
+import java.util.ArrayList;
 
 public class ProductosDAO {
 
-	private static ProductosDAO productoJPA;
-	private EntityManager em;
+    private static ProductosDAO productoJPA;
+    private EntityManager em;
 
-	public ProductosDAO() {
+    public ProductosDAO() {
 
-	}
+    }
 
-	public static ProductosDAO instancia() {
-		if (productoJPA == null) {
-			productoJPA = new ProductosDAO();
-		}
-		return productoJPA;
-	}
+    public static ProductosDAO instancia() {
+        if (productoJPA == null) {
+            productoJPA = new ProductosDAO();
+        }
+        return productoJPA;
+    }
 
-	public String insertarProducto(Producto producto) {
-		EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
-		em = factoriaSesion.createEntityManager();
-		EntityTransaction tx = null;
-		String mensaje = "";
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.merge(producto);
-			tx.commit();
-			mensaje = "insertado";
-		} catch (PersistenceException e) {
-			em.getTransaction().rollback();
-			mensaje = null;
-		} finally {
-			em.close();
-		}
-		return mensaje;
-	}
+    public String insertarProducto(Producto producto) {
+        EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
+        em = factoriaSesion.createEntityManager();
+        EntityTransaction tx = null;
+        String mensaje = "";
+        try {
+            tx = em.getTransaction();
+            tx.begin();
+            em.merge(producto);
+            tx.commit();
+            mensaje = "insertado";
+        } catch (PersistenceException e) {
+            em.getTransaction().rollback();
+            mensaje = null;
+        } finally {
+            em.close();
+        }
+        return mensaje;
+    }
 
-	public List<Producto> litadoProductos() {
-		EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
-		em = factoriaSesion.createEntityManager();
-		try {
-			return em.createNamedQuery("Producto.findAll", Producto.class).getResultList();
-		} catch (PersistenceException e) {
-			return null;
-		} finally {
-			em.close();
-		}
-	}
+    public List<Producto> litadoProductosXNombre(String nombre) {
+        EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
+        em = factoriaSesion.createEntityManager();
+        Query query = em.createNamedQuery("Producto.findByNombreProducto");
+        query.setParameter("nombreProducto", "%"+nombre+"%");
+        List<Producto> lstproducto = new ArrayList<>();
+        try {
+            lstproducto = (List<Producto>) query.getResultList();
+        } finally {
+            em.close();
+        }
+        return lstproducto;
+    }
 
-	public String actualizarProducto(Producto producto) {
-		EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
-		em = factoriaSesion.createEntityManager();
-		EntityTransaction tx = null;
-		String mensaje = "";
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.merge(producto);
-			tx.commit();
-			mensaje = "actualizado";
-		} catch (PersistenceException e) {
-			em.getTransaction().rollback();
-			mensaje = null;
-		} finally {
-			em.close();
-		}
-		return mensaje;
-	}
+    public List<Producto> litadoProductos() {
+        EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
+        em = factoriaSesion.createEntityManager();
+        try {
+            return em.createNamedQuery("Producto.findAll", Producto.class).getResultList();
+        } catch (PersistenceException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 
-	public String deleteProducto(Producto producto) {
-		EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
-		em = factoriaSesion.createEntityManager();
-		EntityTransaction tx = null;
-		String mensaje = "";
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.remove(em.merge(producto));
-			tx.commit();
-			mensaje = "eliminado";
-		} catch (PersistenceException e) {
-			em.getTransaction().rollback();
-			mensaje = null;
-		} finally {
-			em.close();
-		}
-		return mensaje;
-	}
-	public Producto buscarProducto (int id) {
-		EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
-		em = factoriaSesion.createEntityManager();
-		Query query = em.createNamedQuery("Producto.findByIdProducto");
-		query.setParameter("idProducto", id);
-		Producto producto  = new Producto();
-		try {
-			producto= (Producto) query.getSingleResult();
-				
-		} finally {
-			em.close();
-		}
-		
-		return producto;
-	}
+    public String actualizarProducto(Producto producto) {
+        EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
+        em = factoriaSesion.createEntityManager();
+        EntityTransaction tx = null;
+        String mensaje = "";
+        try {
+            tx = em.getTransaction();
+            tx.begin();
+            em.merge(producto);
+            tx.commit();
+            mensaje = "actualizado";
+        } catch (PersistenceException e) {
+            em.getTransaction().rollback();
+            mensaje = null;
+        } finally {
+            em.close();
+        }
+        return mensaje;
+    }
+
+    public String deleteProducto(Producto producto) {
+        EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
+        em = factoriaSesion.createEntityManager();
+        EntityTransaction tx = null;
+        String mensaje = "";
+        try {
+            tx = em.getTransaction();
+            tx.begin();
+            em.remove(em.merge(producto));
+            tx.commit();
+            mensaje = "eliminado";
+        } catch (PersistenceException e) {
+            em.getTransaction().rollback();
+            mensaje = null;
+        } finally {
+            em.close();
+        }
+        return mensaje;
+    }
+
+    public Producto buscarProducto(int id) {
+        EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
+        em = factoriaSesion.createEntityManager();
+        Query query = em.createNamedQuery("Producto.findByIdProducto");
+        query.setParameter("idProducto", id);
+        Producto producto = new Producto();
+        try {
+            producto = (Producto) query.getSingleResult();
+
+        } finally {
+            em.close();
+        }
+
+        return producto;
+    }
 }

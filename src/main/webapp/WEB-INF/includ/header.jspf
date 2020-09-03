@@ -23,7 +23,7 @@
 
             <!-- Features -->
             <li class="nav-item dropdown mega-dropdown active">
-                <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                <a href="./InicioCtrl" class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink2" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">INICIO
                     <span class="sr-only">(current)</span>
                 </a>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </li>
-            
+
 
 
             <c:if test="${validacion}">
@@ -82,7 +82,7 @@
 
         <form method="get" action="ProductosCtrl" class="form-inline">
             <div class="md-form my-0">
-                <input type="search" placeholder="Buscar productos" class="form-control form-control-sm" style="width: 250px" name="busqueda" >
+                <input type="search" placeholder="Buscar productos" class="form-control form-control-sm" style="width: 250px" name="busqueda" value="${filtro}" >
             </div>
         </form>
 
@@ -90,10 +90,12 @@
             <form method="post" action="UsuarioCtr" class="form-inline">
                 <div class="md-form my-0">
                     <c:if test="${rol == 'cliente'}" >
-                        <button type="button" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
+                        <a class="form-control form-control form-control-sm pl-2 pr-2 bordered" href="FacturacionCtrl">
                             <span class="fa fa-shopping-cart"></span>
-                            <span class="badge badge-light">0</span>
-                        </button>
+                            <span class="badge badge-light">
+                                ${productosCompra.size()}
+                            </span>
+                        </a>
                     </c:if>
                     <button type="submit" name="accion" value="perfil" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
                         <c:out value="${usuario.nombreUsuario}" />
@@ -111,10 +113,12 @@
             <!-- Search form -->
             <form method="get" action="UsuarioCtr" class="form-inline">
                 <div class="md-form my-0">
-                    <button type="button" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
+                    <a class="form-control form-control form-control-sm pl-2 pr-2 bordered" href="FacturacionCtrl">
                         <span class="fa fa-shopping-cart"></span>
-                        <span class="badge badge-light">0</span>
-                    </button>
+                        <span class="badge badge-light">
+                            ${productosCompra.size()}
+                        </span>
+                    </a>
                     <button type="submit" name="accion" value="registro" class="form-control form-control form-control-sm pl-2 pr-2 bordered">
                         REGISTRARME 
                         <span class="fa fa-lock"></span>

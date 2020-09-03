@@ -60,6 +60,7 @@ public class DetalleFactura implements Serializable {
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Producto idProducto;
+    private String IdUnico;
 
     public DetalleFactura() {
     }
@@ -76,7 +77,7 @@ public class DetalleFactura implements Serializable {
         this.idProducto = IdProducto;
     }
 
-    public Integer getIdDetalle() {
+    public Integer getidDetalle() {
         return idDetalle;
     }
 
@@ -120,6 +121,7 @@ public class DetalleFactura implements Serializable {
         return idProducto;
     }
 
+
     public void setIdProducto(Producto idProducto) {
         this.idProducto = idProducto;
     }
@@ -148,5 +150,5 @@ public class DetalleFactura implements Serializable {
     public String toString() {
         return "co.edu.ucentral.modelo.DetalleFactura[ idDetalle=" + idDetalle + " ]";
     }
-    
+
 }

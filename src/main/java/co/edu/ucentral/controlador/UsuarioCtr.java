@@ -49,15 +49,19 @@ public class UsuarioCtr extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/usuario/registroUsuario.jsp").forward(request, response);
             } else if (accion.equals("sesion")) {
                 request.getRequestDispatcher("WEB-INF/usuario/iniciarSesion.jsp").forward(request, response);
+            } else if (accion.equals("validasesionfactura")) {
+                HttpSession sesion = request.getSession();
+                boolean validado = false;
+                if (sesion.getAttribute("validacion") != null) {
+                    validado = (boolean) sesion.getAttribute("validacion");
+                }
+                if (validado) {
+                    response.sendRedirect("FacturacionCtrl");
+                } else {
+                    response.sendRedirect("UsuarioCtr?accion=sesion");
+                }
             }
         }
-        if (request.getAttribute("accion") != null) {
-            if (request.getAttribute("accion").equals("sesion")) {
-                request.getRequestDispatcher("WEB-INF/usuario/iniciarSesion.jsp").forward(request, response);
-            }
-        }
-        response.sendRedirect("ProductosCtrl");
-
     }
 
     /**
@@ -90,12 +94,20 @@ public class UsuarioCtr extends HttpServlet {
                 if (sesion != null) {
                     sesion.setAttribute("validacion", validacion);
                     sesion.setAttribute("usuario", usuario);
+
+                    boolean enviaAFactura = false;
+                    if (sesion.getAttribute("enviaAFactura") != null) {
+                        enviaAFactura = (boolean) sesion.getAttribute("enviaAFactura");
+                    }
                     if (usuario.getRol().getRol() == 2) {
                         sesion.setAttribute("rol", "cliente");
-                        response.sendRedirect("InicioCtrl");
                     }
                     if (usuario.getRol().getRol() == 1) {
                         sesion.setAttribute("rol", "administrador");
+                    }
+                    if (enviaAFactura) {
+                        response.sendRedirect("FacturacionCtrl?accion=facturarAutomatica");
+                    } else {
                         response.sendRedirect("InicioCtrl");
                     }
                 }

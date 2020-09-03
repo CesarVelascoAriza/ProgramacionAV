@@ -6,15 +6,18 @@
 package co.edu.ucentral.controlador;
 
 import co.edu.ucentral.dao.ProductosDAO;
+import co.edu.ucentral.modelo.DetalleFactura;
 import co.edu.ucentral.modelo.Producto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "InicioCtrl", urlPatterns = {"/"})
 public class InicioCtrl extends HttpServlet {
 
-  
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -36,9 +38,17 @@ public class InicioCtrl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Producto> listadoProducto= ProductosDAO.instancia().litadoProductos();
-    	request.setAttribute("listadoProducto", listadoProducto);
-    	request.getRequestDispatcher("WEB-INF/Inicio/index.jsp").forward(request, response);
+        HttpSession sesion = request.getSession();
+        if (sesion.getAttribute("productosCompra") == null) {
+            List<DetalleFactura> listado = new ArrayList<>();
+            sesion.setAttribute("productosCompra", listado);
+            sesion.setAttribute("rol", "");
+            sesion.setAttribute("validacion", false);
+            sesion.setAttribute("filtro", "");
+        }    
+        List<Producto> listadoProducto = ProductosDAO.instancia().litadoProductos();
+        request.setAttribute("listadoProducto", listadoProducto);
+        request.getRequestDispatcher("WEB-INF/Inicio/index.jsp").forward(request, response);
     }
 
     /**
@@ -52,9 +62,9 @@ public class InicioCtrl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Producto> listadoProducto= ProductosDAO.instancia().litadoProductos();
-    	request.setAttribute("listadoProducto", listadoProducto);
-    	request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+        List<Producto> listadoProducto = ProductosDAO.instancia().litadoProductos();
+        request.setAttribute("listadoProducto", listadoProducto);
+        request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
     }
 
     /**

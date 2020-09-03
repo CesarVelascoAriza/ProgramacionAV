@@ -94,7 +94,14 @@
                             <h5 class="card-title"> ${productos.nombreProducto} </h5>
                             <p class="card-text text-truncate" style="height-min: 50px">${productos.descripcion} </p>
                             <h5 class="card-title">Precio  ${productos.precioUnidad} </h5>
-                            <a href="#" class="btn btn-primary">Anadir al carrito</a>
+                            <form action="FacturacionCtrl" method="post">
+                                <input type="hidden" value="${productos.rutaImagen}" name="rutaImagen" >
+                                <input type="hidden" value="${productos.nombreProducto}" name="nombreProducto" >
+                                <input type="hidden" value="${productos.descripcion}" name="descripcion" >
+                                <input type="hidden" value="${productos.idProducto}" name="idProducto" >
+                                <input type="hidden" value="${productos.precioUnidad}" name="precioUnidad" >
+                                <input type="submit" class="btn btn-success btn-sm" name="accion" value="Agregar">
+                            </form>
                         </div>
                     </div>
                 </c:forEach>
