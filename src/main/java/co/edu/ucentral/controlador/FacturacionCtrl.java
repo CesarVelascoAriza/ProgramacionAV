@@ -130,7 +130,7 @@ public class FacturacionCtrl extends HttpServlet {
 		String message2 = FacturaDAO.instancia().actualizarFactura(factura);
 		detallesFactura.clear();
 		sesion.setAttribute("productosCompra", detallesFactura);
-		response.sendRedirect("InicioCtrl");
+		response.sendRedirect("HistorialProductos");
 		 
 		
 	}

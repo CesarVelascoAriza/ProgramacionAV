@@ -7,6 +7,7 @@ package co.edu.ucentral.modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -114,6 +115,11 @@ public class Factura implements Serializable {
 
     public void setIdCliente(Cliente idCliente) {
         this.idCliente = idCliente;
+    }
+    
+    public String getFechaString(){
+        SimpleDateFormat objFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return objFormat.format(fechaFactura);
     }
 
     @Override

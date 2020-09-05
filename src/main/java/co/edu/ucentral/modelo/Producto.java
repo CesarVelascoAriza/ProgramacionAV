@@ -35,7 +35,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Producto.findByRutaImagen", query = "SELECT p FROM Producto p WHERE p.rutaImagen = :rutaImagen"),
     @NamedQuery(name = "Producto.findByPrecioUnidad", query = "SELECT p FROM Producto p WHERE p.precioUnidad = :precioUnidad"),
     @NamedQuery(name = "Producto.findByNombreProducto", query = "SELECT p FROM Producto p WHERE p.nombreProducto like :nombreProducto"),
-    @NamedQuery(name = "Producto.findByCatidadProducto", query = "SELECT p FROM Producto p WHERE p.catidadProducto = :catidadProducto")})
+    @NamedQuery(name = "Producto.findByCatidadProducto", query = "SELECT p FROM Producto p WHERE p.catidadProducto = :catidadProducto")
+})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -73,7 +74,7 @@ public class Producto implements Serializable {
         this.idProducto = idProducto;
     }
 
-    public Producto(Integer idProducto,String nombreProducto, String descripcion, String rutaImagen, int precioUnidad, int cantidadProducto) {
+    public Producto(Integer idProducto, String nombreProducto, String descripcion, String rutaImagen, int precioUnidad, int cantidadProducto) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
@@ -162,5 +163,5 @@ public class Producto implements Serializable {
     public String toString() {
         return "co.edu.ucentral.modelo.Producto[ idProducto=" + idProducto + " ]";
     }
-    
+
 }
