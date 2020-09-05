@@ -6,15 +6,20 @@
 package co.edu.ucentral.controlador;
 
 import co.edu.ucentral.dao.ClienteDAO;
+import co.edu.ucentral.dao.FacturaDAO;
 import co.edu.ucentral.dao.ProductosDAO;
 import co.edu.ucentral.modelo.Cliente;
 import co.edu.ucentral.modelo.DetalleFactura;
+import co.edu.ucentral.modelo.Factura;
 import co.edu.ucentral.modelo.Producto;
 import co.edu.ucentral.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.servlet.ServletException;
@@ -90,11 +95,47 @@ public class FacturacionCtrl extends HttpServlet {
             if (request.getParameter("accion").equals("sesion")) {
                 sesion.setAttribute("enviaAFactura", true);
                 response.sendRedirect("UsuarioCtr?accion=sesion");
+            }if(request.getParameter("accion").equals("pagarFactura")) {
+            	generarPagoFactura(request,response);
             }
         }
     }
 
-    private void generarFactura(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void generarPagoFactura(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession sesion = request.getSession();
+		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		Cliente cliente =(Cliente) sesion.getAttribute("cliente");
+		List<DetalleFactura> detallesFactura = (List<DetalleFactura>) sesion.getAttribute("productosCompra");
+		
+		Date fecha = new Date();
+		BigDecimal totalFactura=BigDecimal.valueOf(Double.parseDouble(request.getParameter("totalFacturaApagar"))) ;
+		
+		Factura factura = new Factura();
+		factura.setIdFactura(1);
+		factura.setFechaFactura(fecha);
+		factura.setIdCliente(cliente);
+		factura.setTotal(totalFactura);
+		int idfactura = FacturaDAO.instancia().insertarFactura(factura);
+		SimpleDateFormat formatDate  = new SimpleDateFormat("dd-MM-yyyy");
+		
+		for (DetalleFactura detalle : detallesFactura) {
+			detalle.setIdFactura(factura);
+			Producto cantstock= ProductosDAO.instancia().buscarProducto(detalle.getIdProducto().getIdProducto());
+			
+			int cantidad =cantstock.getCatidadProducto()-detalle.getCantidaProducto();
+			detalle.getIdProducto().setCatidadProducto(cantidad);
+			ProductosDAO.instancia().actualizarcatidadProducto(detalle.getIdProducto());
+		}
+		factura.setDetalleFacturaList(detallesFactura);
+		String message2 = FacturaDAO.instancia().actualizarFactura(factura);
+		detallesFactura.clear();
+		sesion.setAttribute("productosCompra", detallesFactura);
+		response.sendRedirect("InicioCtrl");
+		 
+		
+	}
+
+	private void generarFactura(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession sesion = request.getSession();
         response.sendRedirect("FacturacionCtrl?accion=facturar");
     }
@@ -225,7 +266,8 @@ public class FacturacionCtrl extends HttpServlet {
         HttpSession sesion = request.getSession();
             Usuario objusuario = (Usuario) sesion.getAttribute("usuario");
             Cliente objCliente = ClienteDAO.instancia().buscarXID(objusuario.getIdUsuario());
-            request.setAttribute("cliente", objCliente);
+           // request.setAttribute("cliente", objCliente);
+            sesion.setAttribute("cliente", objCliente);
     }
 
 }

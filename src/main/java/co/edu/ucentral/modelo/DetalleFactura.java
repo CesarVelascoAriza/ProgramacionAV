@@ -60,7 +60,7 @@ public class DetalleFactura implements Serializable {
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Producto idProducto;
-    private String IdUnico;
+    
 
     public DetalleFactura() {
     }

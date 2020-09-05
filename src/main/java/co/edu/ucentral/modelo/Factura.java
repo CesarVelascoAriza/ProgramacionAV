@@ -36,7 +36,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
     @NamedQuery(name = "Factura.findByIdFactura", query = "SELECT f FROM Factura f WHERE f.idFactura = :idFactura"),
-    @NamedQuery(name = "Factura.findByFechaFactura", query = "SELECT f FROM Factura f WHERE f.fechaFactura = :fechaFactura"),
+    @NamedQuery(name = "Factura.findByIdCliente", query = "SELECT f FROM Factura f WHERE f.idCliente.idCliente = :id"),
+    @NamedQuery(name = "Factura.findByIDClienteFechaFactura", query = "SELECT f FROM Factura f WHERE f.fechaFactura = :fechaFactura and f.idCliente.idCliente = :cliente and f.total = :total order by f.fechaFactura"),
     @NamedQuery(name = "Factura.findByTotal", query = "SELECT f FROM Factura f WHERE f.total = :total")})
 public class Factura implements Serializable {
 

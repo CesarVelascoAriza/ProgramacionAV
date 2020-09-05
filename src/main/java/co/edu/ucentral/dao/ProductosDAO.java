@@ -129,4 +129,23 @@ public class ProductosDAO {
 
         return producto;
     }
+    public void  actualizarcatidadProducto(Producto producto) {
+    	 EntityManagerFactory factoriaSesion = ConexionJPA.getJPAFactory();
+         em = factoriaSesion.createEntityManager();
+         EntityTransaction tx = null;
+         String mensaje = "";
+         try {
+             tx = em.getTransaction();
+             tx.begin();
+             em.merge(producto);
+             tx.commit();
+             mensaje = "actualizado";
+         } catch (PersistenceException e) {
+             em.getTransaction().rollback();
+             mensaje = null;
+         } finally {
+             em.close();
+         }
+         
+    } 
 }

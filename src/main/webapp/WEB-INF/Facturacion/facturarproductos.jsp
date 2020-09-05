@@ -24,12 +24,12 @@
                 cursor: pointer;
             }
         </style>
-
+<form action="FacturacionCtrl" method="post">
         <%--Para el body  --%>
         <div id="carousel-example-2"
              class="carousel slide carousel-fade z-depth-1-half container mt-4 mb-4 pt-2 pb-2"
              data-ride="carousel" style="min-height: 750px" >
-
+		
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h4 class="title">Factura cabeza</h2>
@@ -131,19 +131,22 @@
                 </div>
                 <div class="col-md-2 text-right">
                     ${total}  
+                    <input type="hidden" name="totalFacturaApagar" id="totalFacturaApagar" value=" ${total}"> 
                 </div>
                 <div class="col-md-5">
 
                 </div>
                 <div class="col-md-3">
-                    <button type="submit" class="btn btn-sm btn-success w-100">
-                        Generar factura
-                    </button>
+	                	
+	                    <button type="submit" name="accion" value="pagarFactura" class="btn btn-sm btn-success w-100">
+	                        Generar factura
+	                    </button>
+	                
                 </div>
             </div>
         </div>
     </div>
-
+</form>
 
     <%@include file="../includ/footer.jspf"%>
 </body>

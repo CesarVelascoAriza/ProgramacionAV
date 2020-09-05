@@ -6,16 +6,23 @@
 package co.edu.ucentral.controlador;
 
 import co.edu.ucentral.dao.ClienteDAO;
+import co.edu.ucentral.dao.FacturaDAO;
 import co.edu.ucentral.dao.RolDAO;
 import co.edu.ucentral.dao.UsuarioDAO;
 import co.edu.ucentral.modelo.Cliente;
+import co.edu.ucentral.modelo.DetalleFactura;
+import co.edu.ucentral.modelo.Factura;
+import co.edu.ucentral.modelo.Producto;
 import co.edu.ucentral.modelo.Rol;
 import co.edu.ucentral.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,15 +49,14 @@ public class ClienteCtrl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	HttpSession sesion = request.getSession();
+        
         if (request.getParameter("accion") == null) {
-            HttpSession sesion = request.getSession();
             Usuario objusuario = (Usuario) sesion.getAttribute("usuario");
             Cliente objCliente = ClienteDAO.instancia().buscarXID(objusuario.getIdUsuario());
             request.setAttribute("cliente", objCliente);
             request.getRequestDispatcher("WEB-INF/Cliente/consultaCliente.jsp").forward(request, response);
-        } else {
-
-        }
+        } 
     }
 
     /**
